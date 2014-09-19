@@ -10,3 +10,8 @@ Test and Train datasets are combined, activities and subjects are added along wi
 Data is then stripped of all but the mean/sd variables, then molten and dcast to output means by subject and activity.
 
 The plyr and reshape2 libraries were both used. 
+
+*****
+To read tidy data into R, please use the basic read.table function as follows:
+> cd<-read.table("CastData.txt", header=TRUE)
+> View(cd)
