@@ -12,5 +12,5 @@ Data is then stripped of all but the mean/sd variables, then molten and dcast to
 The plyr and reshape2 libraries were both used. 
 
 <p>To read tidy data into R, please use the basic read.table function as follows:</p>
-<p>`cd<-read.table("CastData.txt", header=TRUE)`</p>
-<p>`view(cd)`</p>
+`cd<-read.table("CastData.txt", header=TRUE)`
+`view(cd)`
