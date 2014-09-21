@@ -20,4 +20,5 @@
 <ul>
   <li>subjects: integer describing which subject the data belongs to.</li>
   <li>activities: activity performed by subject.
+  <li>Features: Mean for each is computed by subject and std dev, based on the test and training sets. Variable names were cleaned up as follows: t replaced with "Time", f replaced with "Freq", hyphens removed, "mean" changed to "Mean" and "std" changed to "StdDev". 
 </ul>
