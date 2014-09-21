@@ -4,6 +4,15 @@ library(reshape2)
 #load features, keep only the names column
 features<-read.table("features.txt", sep=" ")
 features<-features[2]
+
+#clean up the features a bit for later use
+features<-gsub("^t","Time",features[,1])
+features<-gsub("^f","Freq",features)
+features<-gsub("-","",features)
+features<-gsub("mean","Mean",features)
+features<-gsub("std","StdDev",features)
+features<-gsub("()","",features)
+
 #transpose the features vector
 transp<-t(features)
 
@@ -43,17 +52,17 @@ combined<-rbind(test, train)
 names(combined)<-transp
 
 #strip out everything but the mean and SD variables
-MeanAndStd<-combined[,grep("mean|std",colnames(combined))]
+MeanAndStd<-combined[,grep("Mean|StdDev",colnames(combined))]
 
 #add new columns to the combined dataframe for subject and activity
 MeanAndStd<-cbind(MeanAndStd,subjects,activities)
 
 #Melt data into a tidy, dcast ready format
-MoltenData<-melt(MeanAndStd, id.vars=c("subjects", "activities"), measure.vars=features[grep("mean|std",features[,1]),])
+MoltenData<-melt(MeanAndStd, id.vars=c("subjects", "activities"), measure.vars=features[grep("Mean|StdDev",features)])
 
 #Cast data to compute mean by subject and activity
 castData<-dcast(MoltenData, subjects+activities~variable, mean)
 
 #output the tidy data
-write.table(castData,"CastData.txt", rownames=FALSE)
+write.table(castData,"CastData.txt", row.names=FALSE)
 
